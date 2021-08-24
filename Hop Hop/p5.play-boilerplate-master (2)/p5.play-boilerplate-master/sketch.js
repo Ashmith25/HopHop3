@@ -41,7 +41,7 @@ function draw() {
     }
     Hop.velocityY=Hop.velocityY+1;
     spawnObstacles();
-    if(Hop.isTouching(PillarGroup)||Hop.y>500){
+    if(Hop.isTouching(PillarGroup)||Hop.y>510){
      gameState="end";
     }
   } 
@@ -51,7 +51,11 @@ function draw() {
    GameOver.visible=true;
    Restart.visible=true; 
    ground.velocityX=0;
+   if(mousePressedOver(Restart)){
+    reset(); 
+   }
   }
+   console.log(gameState);
   drawSprites();
 }
 
@@ -68,6 +72,12 @@ if(frameCount%80===0){
   PillarGroup.add(Pillar1);
   PillarGroup.add(Pillar2);
 }  
+}
+function reset(){
+ gameState="play";
+ GameOver.visible=false;
+ Restart.visible=false;
+ PillarGroup.destroyEach();
 }
 
 /*function keyPressed(){
